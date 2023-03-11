@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { GalleryItem, GalleryImage } from './ImageGalleryItem.styled';
 
-export default class ImageGalleryItem extends Component {
-  render() {
-    return (
-      <GalleryItem>
-        <GalleryImage src={this.props.smallImgURL} alt={this.props.id} />
-      </GalleryItem>
-    );
-  }
+export default function ImageGalleryItem({ smallImgURL, id }) {
+  return (
+    <GalleryItem>
+      <GalleryImage src={smallImgURL} alt={id} />
+    </GalleryItem>
+  );
 }
 
 ImageGalleryItem.propTypes = {

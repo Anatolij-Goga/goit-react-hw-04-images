@@ -28,8 +28,14 @@ export default function Modal({ onClose, pic, id }) {
     };
   });
 
+  const handleBackdropClick = event => {
+    if (event.currentTarget === event.target) {
+      onClose();
+    }
+  };
+
   return createPortal(
-    <Overlay>
+    <Overlay onClick={handleBackdropClick}>
       <ModalContainer>
         <img src={pic} alt={id} />
       </ModalContainer>
@@ -41,4 +47,5 @@ export default function Modal({ onClose, pic, id }) {
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   pic: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };
