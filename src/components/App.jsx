@@ -7,6 +7,7 @@ import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Loader from './Loader/Loader';
 import Button from './Button/Button';
+import { nanoid } from 'nanoid';
 
 const API_KEY = '32927329-1fd723227fa2a945434ab30d0';
 const URL = 'https://pixabay.com/api/';
@@ -18,6 +19,7 @@ export default function App() {
   const [query, setQuery] = useState('');
   const [totalHits, setTotalHits] = useState(null);
   const [error, setError] = useState(null);
+  const [reqId, setReqId] = useState(null);
 
   useEffect(() => {
     if (query === '') {
@@ -52,9 +54,10 @@ export default function App() {
       setStatus('resolved');
       setTotalHits(pictures.total);
     });
-  }, [page, query]);
+  }, [page, query, reqId]);
 
   const processSubmit = query => {
+    setReqId(nanoid());
     setQuery(query);
     setPage(1);
     setPictures([]);
